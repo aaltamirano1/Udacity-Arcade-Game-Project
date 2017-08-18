@@ -14,15 +14,15 @@ var Enemy = function (x, y, speed) {
     this.speed = speed;
 };
 //constant and immutable values should be named in capital letters.
-var HIGHSPEED =5;
-var MIDSPEED = 4;
-var LOWSPEED = 2;
+var HIGH_SPEED =200;
+var MID_SPEED = 150;
+var LOW_SPEED = 100;
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
     var self = this;
-    if (self.x !== 440) {
-        self.x += self.speed;
+    if (self.x < 425) {
+        self.x += (self.speed*dt);
         if (self.x < player.x + player.width && self.x + self.width > player.x && self.y < player.y + player.height && self.height + self.y > player.y) {
             player.x = 200;
             player.y = 400;
@@ -73,10 +73,10 @@ var Player = function (x, y) {
 // Place the player object in a variable called player
 
 var player = new Player(200, 400);
-var enemy1 = new Enemy(200, 318, HIGHSPEED);
-var enemy2 = new Enemy(300, 318, LOWSPEED);
-var enemy3 = new Enemy(400, 154, MIDSPEED);
-var enemy4 = new Enemy(150, 72, HIGHSPEED);
+var enemy1 = new Enemy(200, 318, HIGH_SPEED);
+var enemy2 = new Enemy(300, 318, LOW_SPEED);
+var enemy3 = new Enemy(400, 154, MID_SPEED);
+var enemy4 = new Enemy(150, 72, HIGH_SPEED);
 var allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
 Player.prototype.update = function (dt) {
